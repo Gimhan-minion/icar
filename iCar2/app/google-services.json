@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "97018411809",
+    "firebase_url": "https://icar-uom-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "icar-uom",
+    "storage_bucket": "icar-uom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97018411809:android:50418e47efcf594583dc60",
+        "android_client_info": {
+          "package_name": "com.uom.icar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97018411809-2vbk2gnkuc9uv3qvcl9dnf3emi5n5fop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsDDyImFdpGabSNEpPCnhiHVDnxJX3LQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97018411809-2vbk2gnkuc9uv3qvcl9dnf3emi5n5fop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
