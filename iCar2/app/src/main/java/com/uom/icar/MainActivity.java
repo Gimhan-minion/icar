@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.uom.icar.databinding.ActivityMainBinding;
 import com.uom.icar.ui.login.LoginFragment;
+import com.uom.icar.ui.manageService.AddServiceFragment;
 import com.uom.icar.ui.manageVehicle.AddVehicleFragment;
 import com.uom.icar.ui.manageVehicle.EditVehicleFragment;
 import com.uom.icar.ui.register.RegisterFragment;
@@ -87,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
                     RegisterFragment fragment =new RegisterFragment();
                     trans.replace(R.id.nav_host_fragment_content_main,fragment);
                 }
-//                else if(menuID ==R.id.nav_add){
-//                    AddpostFragment fragment =new AddpostFragment();
-//                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
-//                }
+                else if(menuID ==R.id.nav_addService){
+                    AddServiceFragment fragment =new AddServiceFragment();
+                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
+                }
 //                else if(menuID ==R.id.nav_myPosts){
 //                    MyPostsFragment fragment =new MyPostsFragment();
 //                    trans.replace(R.id.nav_host_fragment_content_main,fragment);

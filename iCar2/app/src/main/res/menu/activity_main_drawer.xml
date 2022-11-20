@@ -32,5 +32,9 @@
             android:id="@+id/nav_register"
             android:icon="@drawable/ic_menu_camera"
             android:title="register" />
+        <item
+            android:id="@+id/nav_addService"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="add service" />
     </group>
 </menu>

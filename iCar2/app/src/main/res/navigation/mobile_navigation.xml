@@ -42,4 +42,9 @@
         android:name="com.uom.icar.ui.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/nav_addService"
+        android:name="com.uom.icar.ui.manageService.AddServiceFragment"
+        android:label="fragment_add_service"
+        tools:layout="@layout/fragment_add_service" />
 </navigation>
