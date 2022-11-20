@@ -1,5 +1,6 @@
 package com.uom.icar.ui.register;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.uom.icar.R;
 import com.uom.icar.model.User;
 import com.uom.icar.pashwrdHash.passwordHash;
+import com.uom.icar.ui.login.LoginFragment;
 
 public class RegisterFragment extends Fragment {
 
@@ -100,11 +102,11 @@ public class RegisterFragment extends Fragment {
 //                                        preference.SaveBool(view.getContext(),true,SharedPreference.REGISTER);
 
                                         //Move to login frag
-//                                        LoginFragment fragment = new LoginFragment();
-//                                        FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
-//                                        trans.replace(R.id.nav_host_fragment_content_main, fragment);
-//                                        trans.addToBackStack(null);
-//                                        trans.commit();
+                                        LoginFragment fragment = new LoginFragment();
+                                        FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                                        trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                                        trans.addToBackStack(null);
+                                        trans.commit();
 
                                         Toast.makeText(getActivity().getApplicationContext(),"Account Created Successfully!",Toast.LENGTH_LONG).show();
 
@@ -127,6 +129,17 @@ public class RegisterFragment extends Fragment {
                     }
                 }
 
+            }
+        });
+
+        txtLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                LoginFragment fragment = new LoginFragment();
+                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                trans.addToBackStack(null);
+                trans.commit();
             }
         });
 

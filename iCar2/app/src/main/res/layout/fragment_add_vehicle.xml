@@ -83,7 +83,6 @@
                             android:layout_marginTop="8dp"
                             android:editable="true"
                             android:ems="10"
-                            android:focusable="false"
                             android:hint="Vehicle No"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -126,7 +125,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:ems="10"
-                            android:focusable="false"
                             android:hint="Engine No"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -141,7 +139,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:ems="10"
-                            android:focusable="false"
                             android:hint="Chassis No"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -236,9 +233,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:ems="10"
-                                android:focusable="false"
                                 android:hint="Service mileage (in km)"
-                                android:inputType="text" />
+                                android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
