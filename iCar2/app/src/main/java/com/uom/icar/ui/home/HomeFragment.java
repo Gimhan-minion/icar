@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,8 @@ import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
 import com.uom.icar.databinding.FragmentHomeBinding;
 import com.uom.icar.model.Vehicle;
+import com.uom.icar.ui.manageVehicle.AddVehicleFragment;
+import com.uom.icar.ui.register.RegisterFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +34,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
     String nic="";
+    CardView add;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +45,19 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         SharedPreference preference=new SharedPreference();
         nic=preference.GetString(getContext(),SharedPreference.USER_NIC);
+
+        add=root.findViewById(R.id.btnAddVehicle);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                AddVehicleFragment fragment = new AddVehicleFragment();
+                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                trans.addToBackStack(null);
+                trans.commit();
+            }
+        });
 
         RecyclerView recyclerView = root.findViewById(R.id.rcvV);
         List<Vehicle> vehicleList = new ArrayList<>();

@@ -20,10 +20,7 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_login" />
-        <item
-            android:id="@+id/nav_addVehicle"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_addVehicle" />
+
         <item
             android:id="@+id/nav_editVehicle"
             android:icon="@drawable/ic_menu_camera"
@@ -36,5 +33,13 @@
             android:id="@+id/nav_addService"
             android:icon="@drawable/ic_menu_camera"
             android:title="add service" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="exit" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="logout" />
     </group>
 </menu>

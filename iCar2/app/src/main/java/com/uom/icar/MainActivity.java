@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.uom.icar.databinding.ActivityMainBinding;
+import com.uom.icar.ui.home.HomeFragment;
 import com.uom.icar.ui.login.LoginFragment;
 import com.uom.icar.ui.manageService.AddServiceFragment;
 import com.uom.icar.ui.manageVehicle.AddVehicleFragment;
@@ -36,15 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        boolean status= false;
+        boolean register= false;
+        String userType;
+        String NIC;
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -60,6 +59,92 @@ public class MainActivity extends AppCompatActivity {
         //adding the navigation manually
         getSupportFragmentManager().popBackStack();
         FragmentTransaction trans =getSupportFragmentManager().beginTransaction();
+
+        //shared preference part
+        SharedPreference preference= new SharedPreference();
+        register =  preference.GetBoolean(getApplicationContext(),SharedPreference.REGISTER);
+        status = preference.GetBoolean(getApplicationContext(),SharedPreference.LOGIN_STATUS);
+        NIC=preference.GetString(getApplicationContext(),SharedPreference.USER_NIC);
+
+
+        Temp.setNIC(NIC);
+
+        Menu menu1 = navigationView.getMenu();
+        MenuItem item1=menu1.findItem(R.id.nav_home);
+        item1.setVisible(false);
+        item1=menu1.findItem(R.id.nav_gallery);
+        item1.setVisible(false);
+        item1=menu1.findItem(R.id.nav_slideshow);
+        item1.setVisible(false);
+        item1=menu1.findItem(R.id.nav_addVehicle);
+        item1.setVisible(false);
+        item1=menu1.findItem(R.id.nav_addService);
+        item1.setVisible(false);
+        item1=menu1.findItem(R.id.nav_editVehicle);
+        item1.setVisible(false);
+        item1=menu1.findItem(R.id.nav_register);
+        item1.setVisible(false);
+        item1=menu1.findItem(R.id.nav_logout);
+        item1.setVisible(false);
+        item1=menu1.findItem(R.id.nav_exit);
+        item1.setVisible(false);
+
+
+
+        //check register
+        if (register){
+            Menu menu = navigationView.getMenu();
+            MenuItem item;
+
+            //check login
+            if(status) {
+                item=menu.findItem(R.id.nav_home);
+                item.setVisible(true);
+                item=menu.findItem(R.id.nav_gallery);
+                item.setVisible(true);
+                item=menu.findItem(R.id.nav_slideshow);
+                item.setVisible(true);
+                item=menu.findItem(R.id.nav_addService);
+                item.setVisible(true);
+                item=menu.findItem(R.id.nav_addVehicle);
+                item.setVisible(true);
+                item=menu.findItem(R.id.nav_logout);
+                item.setVisible(true);
+                item=menu.findItem(R.id.nav_exit);
+                item.setVisible(true);
+
+
+                item=menu.findItem(R.id.nav_login);
+                item.setVisible(false);
+
+
+                //moving to frag
+                HomeFragment fragment = new HomeFragment();
+                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                trans.addToBackStack(null);
+                trans.commit();
+            }
+            else {
+                //moving to frag
+                LoginFragment fragment = new LoginFragment();
+                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                trans.addToBackStack(null);
+                trans.commit();
+            }
+        }
+        else {
+            Menu menu = navigationView.getMenu();
+            MenuItem item=menu.findItem(R.id.nav_register);
+            item.setVisible(true);
+
+            //moving to frag
+            RegisterFragment fragment = new RegisterFragment();
+            trans.replace(R.id.nav_host_fragment_content_main,fragment);
+            trans.addToBackStack(null);
+            trans.commit();
+
+        }
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -109,42 +194,35 @@ public class MainActivity extends AppCompatActivity {
 //                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
 //                }
 //
-//                else if (menuID==R.id.nav_exit){
-//                    finish();
-//
-//                }
-//                else if (menuID==R.id.nav_logout){
-//                    LoginFragment fragment = new LoginFragment();
-//                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
-//                    trans.addToBackStack(null);
-//
-//                    preference.SaveBool(getApplicationContext(),false,SharedPreference.LOGIN_STATUS);
-//                    preference.SaveString(getApplicationContext(),null,SharedPreference.USER_TYPE);
-//                    preference.SaveString(getApplicationContext(),null,SharedPreference.USER_NIC);
-//
-//                    Menu menu1 = navigationView.getMenu();
-//                    MenuItem item1=menu1.findItem(R.id.nav_allPosts);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_home);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_add);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_myPosts);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_myJobs);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_logout);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_register);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_floorPrice);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_profile);
-//                    item1.setVisible(false);
-//                    item1=menu1.findItem(R.id.nav_adminViewUsers);
-//                    item1.setVisible(false);
-//
-//                }
+                else if (menuID==R.id.nav_exit){
+                    finish();
+
+                }
+                else if (menuID==R.id.nav_logout){
+                    LoginFragment fragment = new LoginFragment();
+                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
+                    trans.addToBackStack(null);
+
+                    preference.SaveBool(getApplicationContext(),false,SharedPreference.LOGIN_STATUS);
+                    preference.SaveString(getApplicationContext(),null,SharedPreference.USER_NIC);
+
+                    Menu menu1 = navigationView.getMenu();
+                    MenuItem item1=menu1.findItem(R.id.nav_home);
+                    item1.setVisible(false);
+                    item1=menu1.findItem(R.id.nav_home);
+                    item1.setVisible(false);
+                    item1=menu1.findItem(R.id.nav_addVehicle);
+                    item1.setVisible(false);
+                    item1=menu1.findItem(R.id.nav_addService);
+                    item1.setVisible(false);
+
+                    item1=menu1.findItem(R.id.nav_logout);
+                    item1.setVisible(false);
+                    item1=menu1.findItem(R.id.nav_register);
+                    item1.setVisible(false);
+
+
+                }
                 trans.addToBackStack(null);
                 trans.commit();
                 drawer.closeDrawer(GravityCompat.START);
