@@ -3,24 +3,36 @@ package com.uom.icar.model;
 import java.util.Date;
 
 public class Fuel {
+    private String id;
     private String userId;
     private String vehicleNo;
     private int fuelInLitres;
     private int fuelCharge;
-    private Date refuelDate;
-    private int totalFuel;
+    private String refuelDate;
+    private String total;
+
 
     public Fuel(){
 
     }
 
-    public Fuel(String userId, String vehicleNo, int fuelInLitres, int fuelCharge, Date refuelDate, int totalFuel) {
+    public Fuel(String id,String userId, String vehicleNo, int fuelInLitres, int fuelCharge, String refuelDate,String total) {
+        this.id=id;
         this.userId = userId;
         this.vehicleNo = vehicleNo;
         this.fuelInLitres = fuelInLitres;
         this.fuelCharge = fuelCharge;
         this.refuelDate = refuelDate;
-        this.totalFuel = totalFuel;
+        this.total = total;
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUserId() {
@@ -55,19 +67,19 @@ public class Fuel {
         this.fuelCharge = fuelCharge;
     }
 
-    public Date getRefuelDate() {
+    public String getRefuelDate() {
         return refuelDate;
     }
 
-    public void setRefuelDate(Date refuelDate) {
+    public void setRefuelDate(String refuelDate) {
         this.refuelDate = refuelDate;
     }
 
-    public int getTotalFuel() {
-        return totalFuel;
+    public String getTotal() {
+        return total;
     }
 
-    public void setTotalFuel(int totalFuel) {
-        this.totalFuel = totalFuel;
+    public void setTotal(String total) {
+        this.total = total;
     }
 }

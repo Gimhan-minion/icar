@@ -3,7 +3,7 @@ package com.uom.icar;
 
 public class Temp {
     private static String NIC;
-//    private static String jobID;
+    private static String vehicleNo;
 //    private static String viewUserID;
 
 
@@ -15,7 +15,15 @@ public class Temp {
         Temp.NIC = NIC;
     }
 
-//    public static String getJobID() {
+    public static String getVehicleNo() {
+        return vehicleNo;
+    }
+
+    public static void setVehicleNo(String vehicleNo) {
+        Temp.vehicleNo = vehicleNo;
+    }
+
+    //    public static String getJobID() {
 //        return jobID;
 //    }
 //

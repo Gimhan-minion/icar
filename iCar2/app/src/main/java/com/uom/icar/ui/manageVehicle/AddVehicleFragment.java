@@ -86,6 +86,8 @@ public class AddVehicleFragment extends Fragment {
             public void onClick(View v) {
                 rootNode = FirebaseDatabase.getInstance();
                 referance = rootNode.getReference("Vehicle");
+                if (checkValid()){
+
 
                 String no = vehicleNo.getText().toString();
                 String eno = vehicleENo.getText().toString();
@@ -97,47 +99,46 @@ public class AddVehicleFragment extends Fragment {
                 int sm = Integer.parseInt(serviceMileage.getText().toString());
                 String st = String.valueOf(type.getSelectedItem());
 
-                if (checkValid()){
 
-                    //checking duplicates
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vehicle");
-                    Query checkUser = reference.orderByChild("vehicleNo").equalTo(no);
+                //checking duplicates
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vehicle");
+                Query checkUser = reference.orderByChild("vehicleNo").equalTo(no);
 
-                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-    //                                preloader.dismissDialog();
-                            if (snapshot.exists()) {
+                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        //                                preloader.dismissDialog();
+                        if (snapshot.exists()) {
 
-                                Toast.makeText(getActivity().getApplicationContext(), "There is an exiting vehicle for this vehicleNo number", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "There is an exiting vehicle for this vehicleNo number", Toast.LENGTH_LONG).show();
 
-                            } else {
-                                //saving data to DB
-                                try {
-                                    //creating object
-                                    Vehicle vehicle = new Vehicle(no, nic, st, cno, eno, sm, fc, cfa, m, mpl);
+                        } else {
+                            //saving data to DB
+                            try {
+                                //creating object
+                                Vehicle vehicle = new Vehicle(no, nic, st, cno, eno, sm, fc, cfa, m, mpl);
 
-                                    referance.child(no).setValue(vehicle);
-                                    Toast.makeText(getActivity().getApplicationContext(), "Vehicle added successfully!", Toast.LENGTH_LONG).show();
+                                referance.child(no).setValue(vehicle);
+                                Toast.makeText(getActivity().getApplicationContext(), "Vehicle added successfully!", Toast.LENGTH_LONG).show();
 
-    //                                //Move to login frag
-    //                                LoginFragment fragment = new LoginFragment();
-    //                                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
-    //                                trans.replace(R.id.nav_host_fragment_content_main, fragment);
-    //                                trans.addToBackStack(null);
-    //                                trans.commit();
-                                } catch (Exception ex) {
-                                    Toast.makeText(getActivity().getApplicationContext(), "Failed to add vehicle", Toast.LENGTH_LONG).show();
-                                }
+                                //                                //Move to login frag
+                                //                                LoginFragment fragment = new LoginFragment();
+                                //                                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                                //                                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                                //                                trans.addToBackStack(null);
+                                //                                trans.commit();
+                            } catch (Exception ex) {
+                                Toast.makeText(getActivity().getApplicationContext(), "Failed to add vehicle", Toast.LENGTH_LONG).show();
                             }
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
-                }
+                    }
+                });
+            }
             }
         });
         return view;

@@ -101,7 +101,7 @@ public class AddServiceFragment extends Fragment {
                     String key = reference.push().getKey();
                     Service service = new Service(key,vas,nic,sTitle,sDes,sDate,sMileage);
                     reference.child(key).setValue(service);
-                    Toast.makeText(getActivity().getApplicationContext(), "Review Added!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Service information Added!", Toast.LENGTH_LONG).show();
 
 
                 }
