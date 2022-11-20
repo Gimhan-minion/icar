@@ -3,8 +3,8 @@ package com.uom.icar;
 
 public class Temp {
     private static String NIC;
-    private static String jobID;
-    private static String viewUserID;
+//    private static String jobID;
+//    private static String viewUserID;
 
 
     public static String getNIC() {
@@ -15,20 +15,20 @@ public class Temp {
         Temp.NIC = NIC;
     }
 
-    public static String getJobID() {
-        return jobID;
-    }
-
-    public static void setJobID(String jobID) {
-        Temp.jobID = jobID;
-    }
-
-    public static String getViewUserID() {
-        return viewUserID;
-    }
-
-    public static void setViewUserID(String viewUserID) {
-        Temp.viewUserID = viewUserID;
-    }
+//    public static String getJobID() {
+//        return jobID;
+//    }
+//
+//    public static void setJobID(String jobID) {
+//        Temp.jobID = jobID;
+//    }
+//
+//    public static String getViewUserID() {
+//        return viewUserID;
+//    }
+//
+//    public static void setViewUserID(String viewUserID) {
+//        Temp.viewUserID = viewUserID;
+//    }
 
 }
