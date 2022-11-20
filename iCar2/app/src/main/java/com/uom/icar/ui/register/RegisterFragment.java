@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.uom.icar.R;
+import com.uom.icar.SharedPreference;
 import com.uom.icar.model.User;
 import com.uom.icar.pashwrdHash.passwordHash;
 import com.uom.icar.ui.login.LoginFragment;
@@ -98,8 +99,8 @@ public class RegisterFragment extends Fragment {
 
 
                                         //Set shared pref for register
-//                                        SharedPreference preference=new SharedPreference();
-//                                        preference.SaveBool(view.getContext(),true,SharedPreference.REGISTER);
+                                        SharedPreference preference=new SharedPreference();
+                                        preference.SaveBool(view.getContext(),true,SharedPreference.REGISTER);
 
                                         //Move to login frag
                                         LoginFragment fragment = new LoginFragment();

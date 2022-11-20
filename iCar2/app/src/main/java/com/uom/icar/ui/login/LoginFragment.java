@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.uom.icar.R;
+import com.uom.icar.SharedPreference;
 import com.uom.icar.Temp;
 import com.uom.icar.pashwrdHash.passwordHash;
 import com.uom.icar.ui.home.HomeFragment;
@@ -75,12 +76,12 @@ public class LoginFragment extends Fragment {
                                 if(passwordFromDB.equals(enteredPW)){
                                     Temp.setNIC(enteredNIC);
 
-                                    String userNameFromDB =snapshot.child(enteredNIC).child("name").getValue(String.class);
-//                                    SharedPreference preference=new SharedPreference();
-//                                    preference.SaveBool(view.getContext(),true,SharedPreference.REGISTER);
-//                                    preference.SaveBool(view.getContext(),true,SharedPreference.LOGIN_STATUS);
+//                                    String userNameFromDB =snapshot.child(enteredNIC).child("name").getValue(String.class);
+                                    SharedPreference preference=new SharedPreference();
+                                    preference.SaveBool(view.getContext(),true,SharedPreference.REGISTER);
+                                    preference.SaveBool(view.getContext(),true,SharedPreference.LOGIN_STATUS);
 //                                    preference.SaveString(view.getContext(),userTypeFromDB,SharedPreference.USER_TYPE);
-//                                    preference.SaveString(view.getContext(),enteredNIC,SharedPreference.USER_NIC);
+                                    preference.SaveString(view.getContext(),enteredNIC,SharedPreference.USER_NIC);
 //                                    preference.SaveString(view.getContext(),userNameFromDB,SharedPreference.USER_NAME);
 
 

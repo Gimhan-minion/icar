@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.uom.icar.R;
+import com.uom.icar.SharedPreference;
 import com.uom.icar.model.Vehicle;
 import com.uom.icar.ui.login.LoginFragment;
 
@@ -41,16 +42,7 @@ public class AddVehicleFragment extends Fragment {
 
     DatabaseReference referance;
     FirebaseDatabase rootNode;
-
-    String key;
-
-
-//    String price ="";
-//    String priceForRoomType ="";
-//    String priceForBathroomType="";
-//    String typeID;
-//    int roomPrice =0;
-//    int bathroomPrice=0;
+    String nic="";
 
     public static AddVehicleFragment newInstance() {
         return new AddVehicleFragment();
@@ -60,6 +52,9 @@ public class AddVehicleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_add_vehicle, container, false);
+
+        SharedPreference preference=new SharedPreference();
+        nic=preference.GetString(getContext(),SharedPreference.USER_NIC);
 
         vehicleNo= view.findViewById(R.id.addVehicleNo);
         vehicleCNo=view.findViewById(R.id.addChassisNo);
@@ -120,7 +115,6 @@ public class AddVehicleFragment extends Fragment {
                                 //saving data to DB
                                 try {
                                     //creating object
-                                    String nic = "notset";
                                     Vehicle vehicle = new Vehicle(no, nic, st, cno, eno, sm, fc, cfa, m, mpl);
 
                                     referance.child(no).setValue(vehicle);
@@ -170,7 +164,7 @@ public class AddVehicleFragment extends Fragment {
             return false;
         }
         if (fuelCapacity.getText().toString().equals("")) {
-            Toast.makeText(getActivity().getApplicationContext(),"Fuel capacity  cannot blank",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(),"Fuel capacity cannot blank",Toast.LENGTH_LONG).show();
             return false;
         }
         if (currentFuelAmount.getText().toString().equals("")) {
@@ -189,7 +183,6 @@ public class AddVehicleFragment extends Fragment {
             Toast.makeText(getActivity().getApplicationContext(),"Service mileage cannot blank",Toast.LENGTH_LONG).show();
             return false;
         }
-
         String strType = type.getSelectedItem().toString();
         if (strType.equals("Select-")) {
             Toast.makeText(getActivity().getApplicationContext(),"Select a vehicle Type",Toast.LENGTH_LONG).show();
