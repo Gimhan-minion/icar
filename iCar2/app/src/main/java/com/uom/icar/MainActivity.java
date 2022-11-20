@@ -22,6 +22,7 @@ import com.uom.icar.databinding.ActivityMainBinding;
 import com.uom.icar.ui.login.LoginFragment;
 import com.uom.icar.ui.manageVehicle.AddVehicleFragment;
 import com.uom.icar.ui.manageVehicle.EditVehicleFragment;
+import com.uom.icar.ui.register.RegisterFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -82,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
                     LoginFragment fragment =new LoginFragment();
                     trans.replace(R.id.nav_host_fragment_content_main,fragment);
                 }
-//                else if(menuID ==R.id.nav_allPosts){
-//                    AllPostsFragment fragment =new AllPostsFragment();
-//                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
-//                }
+                else if(menuID ==R.id.nav_register){
+                    RegisterFragment fragment =new RegisterFragment();
+                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
+                }
 //                else if(menuID ==R.id.nav_add){
 //                    AddpostFragment fragment =new AddpostFragment();
 //                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
