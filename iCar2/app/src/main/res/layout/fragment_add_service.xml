@@ -83,7 +83,6 @@
                             android:layout_marginTop="8dp"
                             android:editable="true"
                             android:ems="10"
-                            android:focusable="false"
                             android:hint="Service Title"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -92,6 +91,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <EditText
                             android:id="@+id/addServiceDescription"
                             android:layout_width="match_parent"
@@ -99,10 +99,9 @@
                             android:layout_marginTop="8dp"
                             android:editable="true"
                             android:ems="10"
-                            android:focusable="false"
+                            android:gravity="top"
                             android:hint="Service Description"
-                            android:inputType="text|textMultiLine"
-                            android:gravity="top" />
+                            android:inputType="text|textMultiLine" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
@@ -121,6 +120,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:ems="10"
+                                android:focusable="false"
                                 android:hint="Service Date"
                                 android:inputType="date" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -131,7 +131,7 @@
                             android:paddingEnd="5dp">
 
                             <EditText
-                                android:id="@+id/addCurrentMileage"
+                                android:id="@+id/addServiceMileage"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"

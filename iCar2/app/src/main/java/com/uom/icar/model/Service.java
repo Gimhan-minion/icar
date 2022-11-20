@@ -3,19 +3,19 @@ package com.uom.icar.model;
 import java.util.Date;
 
 public class Service {
-    private int id;
+    private String id;
     private String vehicleNo;
     private String userNic;
     private String name;
     private String description;
-    private Date serviceDate;
+    private String serviceDate;
     private int currentMileage;
 
     public Service(){
 
     }
 
-    public Service(int id, String vehicleNo, String userNic, String name, String description, Date serviceDate, int currentMileage) {
+    public Service(String id, String vehicleNo, String userNic, String name, String description, String serviceDate, int currentMileage) {
         this.id = id;
         this.vehicleNo = vehicleNo;
         this.userNic = userNic;
@@ -25,11 +25,11 @@ public class Service {
         this.currentMileage = currentMileage;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -65,11 +65,11 @@ public class Service {
         this.description = description;
     }
 
-    public Date getServiceDate() {
+    public String getServiceDate() {
         return serviceDate;
     }
 
-    public void setServiceDate(Date serviceDate) {
+    public void setServiceDate(String serviceDate) {
         this.serviceDate = serviceDate;
     }
 
