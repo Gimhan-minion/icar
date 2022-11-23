@@ -69,25 +69,25 @@ public class MainActivity extends AppCompatActivity {
 
         Temp.setNIC(NIC);
 
-        Menu menu1 = navigationView.getMenu();
-        MenuItem item1=menu1.findItem(R.id.nav_home);
-        item1.setVisible(false);
-        item1=menu1.findItem(R.id.nav_gallery);
-        item1.setVisible(false);
-        item1=menu1.findItem(R.id.nav_slideshow);
-        item1.setVisible(false);
-        item1=menu1.findItem(R.id.nav_addVehicle);
-        item1.setVisible(false);
-        item1=menu1.findItem(R.id.nav_addService);
-        item1.setVisible(false);
-        item1=menu1.findItem(R.id.nav_editVehicle);
-        item1.setVisible(false);
-        item1=menu1.findItem(R.id.nav_register);
-        item1.setVisible(false);
-        item1=menu1.findItem(R.id.nav_logout);
-        item1.setVisible(false);
-        item1=menu1.findItem(R.id.nav_exit);
-        item1.setVisible(false);
+//        Menu menu1 = navigationView.getMenu();
+//        MenuItem item1=menu1.findItem(R.id.nav_home);
+//        item1.setVisible(false);
+//        item1=menu1.findItem(R.id.nav_gallery);
+//        item1.setVisible(false);
+//        item1=menu1.findItem(R.id.nav_slideshow);
+//        item1.setVisible(false);
+//        item1=menu1.findItem(R.id.nav_addVehicle);
+//        item1.setVisible(false);
+//        item1=menu1.findItem(R.id.nav_addService);
+//        item1.setVisible(false);
+//        item1=menu1.findItem(R.id.nav_editVehicle);
+//        item1.setVisible(false);
+//        item1=menu1.findItem(R.id.nav_register);
+//        item1.setVisible(false);
+//        item1=menu1.findItem(R.id.nav_logout);
+//        item1.setVisible(false);
+//        item1=menu1.findItem(R.id.nav_exit);
+//        item1.setVisible(false);
 
 
 
@@ -98,31 +98,31 @@ public class MainActivity extends AppCompatActivity {
 
             //check login
             if(status) {
-                item=menu.findItem(R.id.nav_home);
-                item.setVisible(true);
-                item=menu.findItem(R.id.nav_gallery);
-                item.setVisible(true);
-                item=menu.findItem(R.id.nav_slideshow);
-                item.setVisible(true);
-                item=menu.findItem(R.id.nav_addService);
-                item.setVisible(true);
-                item=menu.findItem(R.id.nav_addVehicle);
-                item.setVisible(true);
-                item=menu.findItem(R.id.nav_logout);
-                item.setVisible(true);
-                item=menu.findItem(R.id.nav_exit);
-                item.setVisible(true);
-
-
-                item=menu.findItem(R.id.nav_login);
-                item.setVisible(false);
-
-
-                //moving to frag
-                HomeFragment fragment = new HomeFragment();
-                trans.replace(R.id.nav_host_fragment_content_main, fragment);
-                trans.addToBackStack(null);
-                trans.commit();
+//                item=menu.findItem(R.id.nav_home);
+//                item.setVisible(true);
+//                item=menu.findItem(R.id.nav_gallery);
+//                item.setVisible(true);
+//                item=menu.findItem(R.id.nav_slideshow);
+//                item.setVisible(true);
+//                item=menu.findItem(R.id.nav_addService);
+//                item.setVisible(true);
+//                item=menu.findItem(R.id.nav_addVehicle);
+//                item.setVisible(true);
+//                item=menu.findItem(R.id.nav_logout);
+//                item.setVisible(true);
+//                item=menu.findItem(R.id.nav_exit);
+//                item.setVisible(true);
+//
+//
+//                item=menu.findItem(R.id.nav_login);
+//                item.setVisible(false);
+//
+//
+//                //moving to frag
+//                HomeFragment fragment = new HomeFragment();
+//                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+//                trans.addToBackStack(null);
+//                trans.commit();
             }
             else {
                 //moving to frag
@@ -177,23 +177,6 @@ public class MainActivity extends AppCompatActivity {
                     AddServiceFragment fragment =new AddServiceFragment();
                     trans.replace(R.id.nav_host_fragment_content_main,fragment);
                 }
-//                else if(menuID ==R.id.nav_myPosts){
-//                    MyPostsFragment fragment =new MyPostsFragment();
-//                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
-//                }
-//                else if(menuID ==R.id.nav_myJobs){
-//                    MyJobsFragment fragment =new MyJobsFragment();
-//                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
-//                }
-//                else if(menuID ==R.id.nav_floorPrice){
-//                    FloorPriceFragment fragment =new FloorPriceFragment();
-//                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
-//                }
-//                else if(menuID ==R.id.nav_adminViewUsers){
-//                    AdminViewUsersFragment fragment =new AdminViewUsersFragment();
-//                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
-//                }
-//
                 else if (menuID==R.id.nav_exit){
                     finish();
 
@@ -209,13 +192,12 @@ public class MainActivity extends AppCompatActivity {
                     Menu menu1 = navigationView.getMenu();
                     MenuItem item1=menu1.findItem(R.id.nav_home);
                     item1.setVisible(false);
-                    item1=menu1.findItem(R.id.nav_home);
+                    item1=menu1.findItem(R.id.nav_addVehicle);
                     item1.setVisible(false);
                     item1=menu1.findItem(R.id.nav_addVehicle);
                     item1.setVisible(false);
                     item1=menu1.findItem(R.id.nav_addService);
                     item1.setVisible(false);
-
                     item1=menu1.findItem(R.id.nav_logout);
                     item1.setVisible(false);
                     item1=menu1.findItem(R.id.nav_register);

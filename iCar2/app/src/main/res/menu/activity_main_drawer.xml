@@ -21,18 +21,12 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_login" />
 
-        <item
-            android:id="@+id/nav_editVehicle"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_editVehicle" />
+
         <item
             android:id="@+id/nav_register"
             android:icon="@drawable/ic_menu_camera"
             android:title="register" />
-        <item
-            android:id="@+id/nav_addService"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="add service" />
+
         <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_menu_camera"
