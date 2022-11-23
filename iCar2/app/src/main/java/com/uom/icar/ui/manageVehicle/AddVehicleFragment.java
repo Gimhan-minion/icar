@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
 import com.uom.icar.model.Vehicle;
+import com.uom.icar.ui.home.HomeFragment;
 import com.uom.icar.ui.login.LoginFragment;
 
 import java.util.ArrayList;
@@ -92,11 +93,11 @@ public class AddVehicleFragment extends Fragment {
                 String no = vehicleNo.getText().toString();
                 String eno = vehicleENo.getText().toString();
                 String cno = vehicleCNo.getText().toString();
-                int fc = Integer.parseInt(fuelCapacity.getText().toString());
-                int cfa = Integer.parseInt(currentFuelAmount.getText().toString());
-                int m = Integer.parseInt(mileage.getText().toString());
-                int mpl = Integer.parseInt(mileagePerLitre.getText().toString());
-                int sm = Integer.parseInt(serviceMileage.getText().toString());
+                String fc = fuelCapacity.getText().toString();
+                String cfa = currentFuelAmount.getText().toString();
+                String m = mileage.getText().toString();
+                String mpl = mileagePerLitre.getText().toString();
+                String sm = serviceMileage.getText().toString();
                 String st = String.valueOf(type.getSelectedItem());
 
 
@@ -121,12 +122,12 @@ public class AddVehicleFragment extends Fragment {
                                 referance.child(no).setValue(vehicle);
                                 Toast.makeText(getActivity().getApplicationContext(), "Vehicle added successfully!", Toast.LENGTH_LONG).show();
 
-                                //                                //Move to login frag
-                                //                                LoginFragment fragment = new LoginFragment();
-                                //                                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
-                                //                                trans.replace(R.id.nav_host_fragment_content_main, fragment);
-                                //                                trans.addToBackStack(null);
-                                //                                trans.commit();
+                                    //Move to login frag
+                                    HomeFragment fragment = new HomeFragment();
+                                    FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                                    trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                                    trans.addToBackStack(null);
+                                    trans.commit();
                             } catch (Exception ex) {
                                 Toast.makeText(getActivity().getApplicationContext(), "Failed to add vehicle", Toast.LENGTH_LONG).show();
                             }

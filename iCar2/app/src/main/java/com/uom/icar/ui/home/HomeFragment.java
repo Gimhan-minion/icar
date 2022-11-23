@@ -48,16 +48,7 @@ public class HomeFragment extends Fragment {
 
         add=root.findViewById(R.id.btnAddVehicle);
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
-                AddVehicleFragment fragment = new AddVehicleFragment();
-                trans.replace(R.id.nav_host_fragment_content_main, fragment);
-                trans.addToBackStack(null);
-                trans.commit();
-            }
-        });
+
 
         RecyclerView recyclerView = root.findViewById(R.id.rcvV);
         List<Vehicle> vehicleList = new ArrayList<>();
@@ -81,6 +72,17 @@ public class HomeFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                AddVehicleFragment fragment = new AddVehicleFragment();
+                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                trans.addToBackStack(null);
+                trans.commit();
             }
         });
 

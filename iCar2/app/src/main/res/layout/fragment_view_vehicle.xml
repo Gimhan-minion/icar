@@ -204,34 +204,9 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView66"
+                                    android:id="@+id/txtENo"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="TextView"
-                                    android:textColor="@color/back_courses" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/textView57"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="10dp"
-                                    android:text="Mileage :"
-                                    android:textColor="@color/back_courses"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/textView68"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="TextView"
                                     android:textColor="@color/back_courses" />
                             </LinearLayout>
 
@@ -252,10 +227,9 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView61"
+                                    android:id="@+id/txtvNo"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="TextView"
                                     android:textColor="@color/back_courses" />
                             </LinearLayout>
 
@@ -276,34 +250,9 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView62"
+                                    android:id="@+id/txtCNo"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="TextView"
-                                    android:textColor="@color/back_courses" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/textView53"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="10dp"
-                                    android:text="Engine Number :"
-                                    android:textColor="@color/back_courses"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/textView64"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="TextView"
                                     android:textColor="@color/back_courses" />
                             </LinearLayout>
 
@@ -324,34 +273,9 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView69"
+                                    android:id="@+id/txtType"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="TextView"
-                                    android:textColor="@color/back_courses" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/textView50"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="10dp"
-                                    android:text="Vehicle Number :"
-                                    android:textColor="@color/back_courses"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/textView60"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="TextView"
                                     android:textColor="@color/back_courses" />
                             </LinearLayout>
 
@@ -372,10 +296,9 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView600"
+                                    android:id="@+id/txtMPL"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="TextView"
                                     android:textColor="@color/back_courses" />
                             </LinearLayout>
 
@@ -396,10 +319,9 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView699"
+                                    android:id="@+id/txtTC"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="TextView"
                                     android:textColor="@color/back_courses" />
                             </LinearLayout>
 
@@ -420,10 +342,9 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView6"
+                                    android:id="@+id/txtM"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="TextView"
                                     android:textColor="@color/back_courses" />
                             </LinearLayout>
 
@@ -434,7 +355,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="50dp"
                         android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView

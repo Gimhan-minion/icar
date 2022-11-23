@@ -6,13 +6,13 @@ public class Vehicle {
     private String vehicleType;
     private String chassisNo;
     private String engineNo;
-    private int serviceMileage;
-    private int fuelTankCapacity;
-    private int currentFuelAmount;
-    private int mileage;
-    private int mileagePerLitre;
+    private String serviceMileage;
+    private String fuelTankCapacity;
+    private String currentFuelAmount;
+    private String mileage;
+    private String mileagePerLitre;
 
-    public Vehicle(String vehicleNo, String userNic, String vehicleType, String chassisNo, String engineNo, int serviceMileage, int fuelTankCapacity, int currentFuelAmount, int mileage, int mileagePerLitre) {
+    public Vehicle(String vehicleNo, String userNic, String vehicleType, String chassisNo, String engineNo, String serviceMileage, String fuelTankCapacity, String currentFuelAmount, String mileage, String mileagePerLitre) {
         this.vehicleNo = vehicleNo;
         this.userNic = userNic;
         this.vehicleType = vehicleType;
@@ -61,43 +61,43 @@ public class Vehicle {
         this.engineNo = engineNo;
     }
 
-    public int getFuelTankCapacity() {
+    public String getFuelTankCapacity() {
         return fuelTankCapacity;
     }
 
-    public void setFuelTankCapacity(int fuelTankCapacity) {
+    public void setFuelTankCapacity(String fuelTankCapacity) {
         this.fuelTankCapacity = fuelTankCapacity;
     }
 
-    public int getCurrentFuelAmount() {
+    public String getCurrentFuelAmount() {
         return currentFuelAmount;
     }
 
-    public void setCurrentFuelAmount(int currentFuelAmount) {
+    public void setCurrentFuelAmount(String currentFuelAmount) {
         this.currentFuelAmount = currentFuelAmount;
     }
 
-    public int getMileage() {
+    public String getMileage() {
         return mileage;
     }
 
-    public void setMileage(int mileage) {
+    public void setMileage(String mileage) {
         this.mileage = mileage;
     }
 
-    public int getServiceMileage() {
+    public String getServiceMileage() {
         return serviceMileage;
     }
 
-    public void setServiceMileage(int serviceMileage) {
+    public void setServiceMileage(String serviceMileage) {
         this.serviceMileage = serviceMileage;
     }
 
-    public int getMileagePerLitre() {
+    public String getMileagePerLitre() {
         return mileagePerLitre;
     }
 
-    public void setMileagePerLitre(int mileagePerLitre) {
+    public void setMileagePerLitre(String mileagePerLitre) {
         this.mileagePerLitre = mileagePerLitre;
     }
 

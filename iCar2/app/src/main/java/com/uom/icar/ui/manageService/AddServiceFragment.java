@@ -10,6 +10,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +29,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
 import com.uom.icar.Temp;
+import com.uom.icar.model.Fuel;
 import com.uom.icar.model.Service;
 import com.uom.icar.pashwrdHash.passwordHash;
 import com.uom.icar.ui.home.HomeFragment;
+import com.uom.icar.ui.manageFuel.AddFuelFragment;
+import com.uom.icar.ui.manageFuel.FuelAdapter;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class AddServiceFragment extends Fragment {
 
@@ -40,6 +47,7 @@ public class AddServiceFragment extends Fragment {
     CardView create;
     EditText title,des,date,mileage;
     String nic="";
+    FirebaseDatabase fdb = FirebaseDatabase.getInstance();
 
     public static AddServiceFragment newInstance() {
         return new AddServiceFragment();
@@ -57,7 +65,33 @@ public class AddServiceFragment extends Fragment {
        des=view.findViewById(R.id.addServiceDescription);
        date=view.findViewById(R.id.addServiceDate);
        mileage=view.findViewById(R.id.addServiceMileage);
+        String vehicleNo= Temp.getVehicleNo();
 
+
+
+        RecyclerView recyclerView = view.findViewById(R.id.rcvSR);
+        List<Service> serviceList = new ArrayList<>();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("Service");
+        Query getServiceRecords = rootRef.orderByChild("vehicleNo").equalTo(vehicleNo);
+
+        getServiceRecords.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                preloader.dismissDialog();
+                if (snapshot.exists()) {
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        Service service=postSnapshot.getValue(Service.class);
+                        serviceList.add(service);
+                    }
+                    ServiceAdapter adapter= new ServiceAdapter(serviceList,fdb);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         //date picker
         date.setOnClickListener(new View.OnClickListener() {
@@ -93,15 +127,20 @@ public class AddServiceFragment extends Fragment {
                     String sTitle=title.getText().toString();
                     String sDes=des.getText().toString();
                     String sDate=date.getText().toString();
-                    int sMileage= Integer.parseInt(mileage.getText().toString());
+                    String sMileage= mileage.getText().toString();
 
 
                     //add service
-                    String vas="not set";
                     String key = reference.push().getKey();
-                    Service service = new Service(key,vas,nic,sTitle,sDes,sDate,sMileage);
+                    Service service = new Service(key,vehicleNo,nic,sTitle,sDes,sDate,sMileage);
                     reference.child(key).setValue(service);
                     Toast.makeText(getActivity().getApplicationContext(), "Service information Added!", Toast.LENGTH_LONG).show();
+
+                    FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                    AddServiceFragment fragment = new AddServiceFragment();
+                    trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                    trans.addToBackStack(null);
+                    trans.commit();
 
 
                 }

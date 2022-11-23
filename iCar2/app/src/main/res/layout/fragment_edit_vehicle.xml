@@ -40,7 +40,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_weight="40"
                     android:fontFamily="sans-serif"
-                    android:text="Add New Vehicle"
+                    android:text="Edit Vehicle Info"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp"
                     android:textStyle="bold">
@@ -81,8 +81,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:editable="true"
                             android:ems="10"
+                            android:enabled="false"
                             android:hint="Vehicle No"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -278,7 +278,7 @@
                                     android:layout_marginStart="5dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_weight="1"
-                                    android:text="Edit Vehicle"
+                                    android:text="Update"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 

@@ -9,13 +9,13 @@ public class Service {
     private String name;
     private String description;
     private String serviceDate;
-    private int currentMileage;
+    private String currentMileage;
 
     public Service(){
 
     }
 
-    public Service(String id, String vehicleNo, String userNic, String name, String description, String serviceDate, int currentMileage) {
+    public Service(String id, String vehicleNo, String userNic, String name, String description, String serviceDate, String currentMileage) {
         this.id = id;
         this.vehicleNo = vehicleNo;
         this.userNic = userNic;
@@ -73,11 +73,11 @@ public class Service {
         this.serviceDate = serviceDate;
     }
 
-    public int getCurrentMileage() {
+    public String getCurrentMileage() {
         return currentMileage;
     }
 
-    public void setCurrentMileage(int currentMileage) {
+    public void setCurrentMileage(String currentMileage) {
         this.currentMileage = currentMileage;
     }
 }
