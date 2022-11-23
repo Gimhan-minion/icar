@@ -16,6 +16,7 @@
     <color name="back_courses">#f8fafb</color>
     <color name="darkTextColor">#020000</color>
     <color name="dashboard_subtitle">#B7B7CC</color>
+    <color name="ic_frag_color">#01A4CB</color>
 
 
 </resources>
