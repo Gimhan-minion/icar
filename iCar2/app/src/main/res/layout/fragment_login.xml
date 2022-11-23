@@ -11,7 +11,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/ic_launcher_background"
+        android:background="@color/ic_frag_color"
 
         android:orientation="vertical"
 
@@ -146,7 +146,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="30dp"
-                                android:backgroundTint="@color/ic_launcher_background"
+                                android:backgroundTint="@color/ic_frag_color"
                                 android:text="Login"
                                 android:textStyle="bold" />
                         </LinearLayout>

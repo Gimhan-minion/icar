@@ -14,7 +14,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/ic_launcher_background"
+            android:background="@color/ic_frag_color"
 
             android:orientation="vertical"
 
@@ -202,7 +202,7 @@
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
-                                android:backgroundTint="@color/ic_launcher_background"
+                                android:backgroundTint="@color/ic_frag_color"
                                 android:text="Register"
                                 android:textStyle="bold" />
 
