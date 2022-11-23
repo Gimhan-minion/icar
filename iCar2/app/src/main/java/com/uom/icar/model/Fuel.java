@@ -10,13 +10,14 @@ public class Fuel {
     private String fuelCharge;
     private String refuelDate;
     private String total;
+    private String mileage;
 
 
     public Fuel(){
 
     }
 
-    public Fuel(String id,String userId, String vehicleNo, String fuelInLitres, String fuelCharge, String refuelDate,String total) {
+    public Fuel(String id,String userId, String vehicleNo, String fuelInLitres, String fuelCharge, String refuelDate,String total,String mileage) {
         this.id=id;
         this.userId = userId;
         this.vehicleNo = vehicleNo;
@@ -24,6 +25,7 @@ public class Fuel {
         this.fuelCharge = fuelCharge;
         this.refuelDate = refuelDate;
         this.total = total;
+        this.mileage=mileage;
 
     }
 
@@ -81,5 +83,13 @@ public class Fuel {
 
     public void setTotal(String total) {
         this.total = total;
+    }
+
+    public String getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(String mileage) {
+        this.mileage = mileage;
     }
 }

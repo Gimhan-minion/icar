@@ -65,6 +65,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHold
         Vehicle vehicle=vehicleList.get(position);
 
         holder.vehicleNo.setText(vehicle.getVehicleNo());
+        holder.fuel.setText(vehicle.getCurrentFuelAmount()+"L");
 
 
 
@@ -130,7 +131,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView vehicleNo;
+        TextView vehicleNo,fuel;
         ImageView imgVehicle;
         CardView vehicleCard;
         ImageButton btnDel;
@@ -139,6 +140,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHold
             vehicleCard =itemView.findViewById(R.id.vehicleCard);
             imgVehicle =itemView.findViewById(R.id.imgVehicle);
             vehicleNo =itemView.findViewById(R.id.vehicleNo);
+            fuel =itemView.findViewById(R.id.vehicleFuel);
             btnDel=itemView.findViewById(R.id.imgBtnDel);
         }
     }

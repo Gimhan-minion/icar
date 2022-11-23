@@ -32,9 +32,11 @@ import com.uom.icar.Temp;
 import com.uom.icar.model.Fuel;
 import com.uom.icar.model.Service;
 import com.uom.icar.model.Vehicle;
+import com.uom.icar.ui.home.HomeFragment;
 import com.uom.icar.ui.home.VehicleAdapter;
 import com.uom.icar.ui.manageVehicle.EditVehicleFragment;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -42,7 +44,7 @@ import java.util.List;
 public class AddFuelFragment extends Fragment {
 
     private AddFuelViewModel mViewModel;
-    EditText date,amount,price;
+    EditText date,amount,price,mileage;
     CardView addRecord;
     String nic="";
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
@@ -62,6 +64,7 @@ public class AddFuelFragment extends Fragment {
        date=view.findViewById(R.id.addDate);
        amount=view.findViewById(R.id.addFuelLit);
        price=view.findViewById(R.id.addFuelCharge);
+       mileage=view.findViewById(R.id.addCurrnetMileage);
        addRecord=view.findViewById(R.id.btnCreate);
        String vehicleNo= Temp.getVehicleNo();
 
@@ -124,22 +127,65 @@ public class AddFuelFragment extends Fragment {
                    String sAmount= amount.getText().toString();
                    String sPrice= price.getText().toString();
                    String sDate=date.getText().toString();
+                   String sMil=mileage.getText().toString();
+
+                   DatabaseReference vehicleReference = FirebaseDatabase.getInstance().getReference("Vehicle");
+                   Query getVehicle = vehicleReference.orderByChild("vehicleNo").equalTo(vehicleNo);
 
 
 
-                   //add fuel
-                   int val=Integer.valueOf(amount.getText().toString())*Integer.valueOf(price.getText().toString());
-                   String total =String.valueOf(val)  ;
-                   String key = reference.push().getKey();
-                   Fuel fuel=new Fuel(key,nic,vehicleNo,sAmount,sPrice,sDate,total);
-                   reference.child(key).setValue(fuel);
-                   Toast.makeText(getActivity().getApplicationContext(), "Fuel information Added!", Toast.LENGTH_LONG).show();
+                   getVehicle.addListenerForSingleValueEvent(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                           if (snapshot.exists()) {
+                               String currentMileage = snapshot.child(vehicleNo).child("mileage").getValue(String.class);
+                               String currentFuelAmount = snapshot.child(vehicleNo).child("currentFuelAmount").getValue(String.class);
+                               String mileagePerLit = snapshot.child(vehicleNo).child("mileagePerLitre").getValue(String.class);
+                               double tackCap = Double.parseDouble(snapshot.child(vehicleNo).child("fuelTankCapacity").getValue(String.class));
 
-                   FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
-                   AddFuelFragment fragment = new AddFuelFragment();
-                   trans.replace(R.id.nav_host_fragment_content_main, fragment);
-                   trans.addToBackStack(null);
-                   trans.commit();
+                               double tempMileage= Double.parseDouble(sMil) -Double.parseDouble(currentMileage);
+                               double burnedLit = tempMileage/Integer.parseInt(mileagePerLit);
+                               double remainingFuel= Double.parseDouble(currentFuelAmount)-burnedLit+ Double.parseDouble(sAmount);
+
+                               DecimalFormat df = new DecimalFormat("0.00");
+                               String fuelLit= df.format(remainingFuel);
+
+                               if(tackCap>remainingFuel){
+
+                                   vehicleReference.child(vehicleNo).child("currentFuelAmount").setValue(fuelLit);
+                                   vehicleReference.child(vehicleNo).child("mileage").setValue(sMil);
+
+                                   //add fuel
+                                   int val=Integer.valueOf(amount.getText().toString())*Integer.valueOf(price.getText().toString());
+                                   String total =String.valueOf(val)  ;
+                                   String key = reference.push().getKey();
+                                   Fuel fuel=new Fuel(key,nic,vehicleNo,sAmount,sPrice,sDate,total,sMil);
+                                   reference.child(key).setValue(fuel);
+                                   Toast.makeText(getActivity().getApplicationContext(), "Fuel information Added!", Toast.LENGTH_LONG).show();
+
+
+                                   FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                                   HomeFragment fragment = new HomeFragment();
+                                   trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                                   trans.addToBackStack(null);
+                                   trans.commit();
+                               }else{
+                                   Toast.makeText(getActivity().getApplicationContext(), "Invalid fuel amount. Please check again!", Toast.LENGTH_LONG).show();
+                               }
+                           } else {
+                               Toast.makeText(getActivity().getApplicationContext(), "no data", Toast.LENGTH_LONG).show();
+                           }
+                       }
+
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError error) {
+
+                       }
+                   });
+
+
+
+
 
 
                }
