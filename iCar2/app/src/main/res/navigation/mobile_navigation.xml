@@ -36,4 +36,9 @@
         android:name="com.uom.icar.ui.manageService.AddServiceFragment"
         android:label="fragment_add_service"
         tools:layout="@layout/fragment_add_service" />
+    <fragment
+        android:id="@+id/nav_quiz"
+        android:name="com.uom.icar.ui.quiz.Quiz_Fragment"
+        android:label="fragment_quiz_"
+        tools:layout="@layout/fragment_quiz_" />
 </navigation>
