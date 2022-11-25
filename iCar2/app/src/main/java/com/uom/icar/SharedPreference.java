@@ -8,6 +8,7 @@ public class SharedPreference {
     public  static final String REGISTER ="CHECK_REGISTER";
     public  static final String LOGIN_STATUS ="LOGIN_STATUS";
     public  static final String  USER_NIC ="USER_NIC";
+    public  static final String  DATE ="DATE";
 //    public  static final String  USER_TYPE ="USER_TYPE";
 //    public  static final String  USER_NAME ="USER_NAME";
 

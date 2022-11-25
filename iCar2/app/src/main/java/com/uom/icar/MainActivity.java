@@ -1,13 +1,21 @@
 package com.uom.icar;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
@@ -32,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     boolean status= false;
     boolean register= false;
-    String userType;
     String NIC;
+    String date;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,6 +185,51 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+
+        //tip of the day
+        // Configure the channel
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel("myChannelId", "My Channel", importance);
+        channel.setDescription("Reminders");
+        // Register the channel with the notifications manager
+        NotificationManager mNotificationManager =
+                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.createNotificationChannel(channel);
+
+
+        NotificationCompat.Builder mBuilder;
+
+        //get date
+        date=String.valueOf(java.time.LocalDate.now());
+//        date="2022-11-10";
+
+        String savedDate=preference.GetString(getApplicationContext(),SharedPreference.DATE);
+
+        String title ="Tip of The Day";
+        String msg=" Drive safe!";
+
+        if( savedDate.equals(date)){
+
+        }else{
+            if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
+                mBuilder =new NotificationCompat.Builder(getApplicationContext(), "myChannelId")
+                        .setSmallIcon(R.drawable.icon)
+                        .setContentTitle(title)
+                        .setContentText(msg);
+            }else{
+                mBuilder = new NotificationCompat.Builder(getApplicationContext())
+                        .setSmallIcon(R.drawable.icon)
+                        .setContentTitle(title)
+                        .setContentText(msg);
+            }
+            NotificationManager nm =
+                    (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            // mId allows you to update the notification later on.
+            nm.notify(1, mBuilder.build());
+            preference.SaveString(getApplicationContext(),date,SharedPreference.DATE);
+        }
     }
 
     @Override
