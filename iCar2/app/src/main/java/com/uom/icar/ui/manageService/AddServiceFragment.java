@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.uom.icar.PreLoader;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
 import com.uom.icar.Temp;
@@ -71,6 +72,9 @@ public class AddServiceFragment extends Fragment {
        nodata.setVisibility(View.GONE);
         String vehicleNo= Temp.getVehicleNo();
 
+        final PreLoader preloader = new PreLoader(getActivity());
+        preloader.startLoadingDialog();
+
 
 
         RecyclerView recyclerView = view.findViewById(R.id.rcvSR);
@@ -81,7 +85,7 @@ public class AddServiceFragment extends Fragment {
         getServiceRecords.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                preloader.dismissDialog();
+                preloader.dismissDialog();
                 if (snapshot.exists()) {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         Service service=postSnapshot.getValue(Service.class);

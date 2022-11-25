@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.uom.icar.PreLoader;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
 import com.uom.icar.databinding.FragmentHomeBinding;
@@ -43,6 +44,9 @@ public class HomeFragment extends Fragment {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
+        final PreLoader preloader = new PreLoader(getActivity());
+        preloader.startLoadingDialog();
+
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         SharedPreference preference=new SharedPreference();
@@ -63,7 +67,7 @@ public class HomeFragment extends Fragment {
         getVehicles.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                preloader.dismissDialog();
+                preloader.dismissDialog();
                 if (snapshot.exists()) {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         Vehicle vehicle=postSnapshot.getValue(Vehicle.class);
