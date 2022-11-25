@@ -206,9 +206,9 @@ public class MainActivity extends AppCompatActivity {
         String savedDate=preference.GetString(getApplicationContext(),SharedPreference.DATE);
 
         String title ="Tip of The Day";
-        String msg=" Drive safe!";
+        String msg="Drive safe!";
 
-        if( savedDate.equals(date)){
+        if(savedDate.equals(date)){
 
         }else{
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
