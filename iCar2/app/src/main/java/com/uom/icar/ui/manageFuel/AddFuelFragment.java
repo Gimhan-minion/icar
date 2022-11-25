@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.uom.icar.PreLoader;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
 import com.uom.icar.Temp;
@@ -45,6 +47,7 @@ public class AddFuelFragment extends Fragment {
 
     private AddFuelViewModel mViewModel;
     EditText date,amount,price,mileage;
+    TextView nodata;
     CardView addRecord;
     String nic="";
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
@@ -66,8 +69,12 @@ public class AddFuelFragment extends Fragment {
        price=view.findViewById(R.id.addFuelCharge);
        mileage=view.findViewById(R.id.addCurrnetMileage);
        addRecord=view.findViewById(R.id.btnCreate);
+       nodata=view.findViewById(R.id.nodata);
+       nodata.setVisibility(view.GONE);
        String vehicleNo= Temp.getVehicleNo();
 
+        final PreLoader preloader = new PreLoader(getActivity());
+        preloader.startLoadingDialog();
 
 
         RecyclerView recyclerView = view.findViewById(R.id.rcvFR);
@@ -78,7 +85,7 @@ public class AddFuelFragment extends Fragment {
         getFuelRecords.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                preloader.dismissDialog();
+                preloader.dismissDialog();
                 if (snapshot.exists()) {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         Fuel fuel=postSnapshot.getValue(Fuel.class);
@@ -88,6 +95,8 @@ public class AddFuelFragment extends Fragment {
                     FuelAdapter adapter= new FuelAdapter(fuelList,fdb);
                     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
                     recyclerView.setAdapter(adapter);
+                }else{
+                    nodata.setVisibility(View.VISIBLE);
                 }
             }
             @Override

@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.uom.icar.PreLoader;
 import com.uom.icar.R;
 import com.uom.icar.Temp;
 import com.uom.icar.ui.manageFuel.AddFuelFragment;
@@ -55,6 +56,8 @@ public class ViewVehicleFragment extends Fragment {
         TC=view.findViewById(R.id.txtTC);
         M=view.findViewById(R.id.txtM);
 
+        final PreLoader preloader = new PreLoader(getActivity());
+        preloader.startLoadingDialog();
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vehicle");
@@ -63,7 +66,7 @@ public class ViewVehicleFragment extends Fragment {
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                preloader.dismissDialog();
+                preloader.dismissDialog();
                 if (snapshot.exists()) {
 
 

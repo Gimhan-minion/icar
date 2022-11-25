@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -19,11 +20,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.uom.icar.PreLoader;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
+import com.uom.icar.Temp;
 import com.uom.icar.databinding.FragmentHomeBinding;
 import com.uom.icar.model.Vehicle;
 import com.uom.icar.ui.manageVehicle.AddVehicleFragment;
+import com.uom.icar.ui.profile.ProfileFragment;
 import com.uom.icar.ui.register.RegisterFragment;
 
 import java.util.ArrayList;
@@ -34,12 +38,16 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
     String nic="";
-    CardView add;
+    CardView add,profile;
+    TextView nodata;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
+
+        final PreLoader preloader = new PreLoader(getActivity());
+        preloader.startLoadingDialog();
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -47,6 +55,10 @@ public class HomeFragment extends Fragment {
         nic=preference.GetString(getContext(),SharedPreference.USER_NIC);
 
         add=root.findViewById(R.id.btnAddVehicle);
+        profile=root.findViewById(R.id.homeMyProfile);
+
+        nodata=root.findViewById(R.id.nodata);
+        nodata.setVisibility(View.GONE);
 
 
 
@@ -58,7 +70,7 @@ public class HomeFragment extends Fragment {
         getVehicles.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                preloader.dismissDialog();
+                preloader.dismissDialog();
                 if (snapshot.exists()) {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         Vehicle vehicle=postSnapshot.getValue(Vehicle.class);
@@ -68,6 +80,8 @@ public class HomeFragment extends Fragment {
                     VehicleAdapter adapter= new VehicleAdapter(vehicleList,fdb);
                     recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
                     recyclerView.setAdapter(adapter);
+                }else{
+                nodata.setVisibility(View.VISIBLE);
                 }
             }
             @Override
@@ -83,6 +97,18 @@ public class HomeFragment extends Fragment {
                 trans.replace(R.id.nav_host_fragment_content_main, fragment);
                 trans.addToBackStack(null);
                 trans.commit();
+            }
+        });
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                ProfileFragment fragment = new ProfileFragment();
+                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                trans.addToBackStack(null);
+                trans.commit();
+
             }
         });
 

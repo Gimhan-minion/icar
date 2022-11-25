@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.uom.icar.PreLoader;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
 import com.uom.icar.Temp;
@@ -47,6 +49,7 @@ public class AddServiceFragment extends Fragment {
     CardView create;
     EditText title,des,date,mileage;
     String nic="";
+    TextView nodata;
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
 
     public static AddServiceFragment newInstance() {
@@ -65,7 +68,12 @@ public class AddServiceFragment extends Fragment {
        des=view.findViewById(R.id.addServiceDescription);
        date=view.findViewById(R.id.addServiceDate);
        mileage=view.findViewById(R.id.addServiceMileage);
+       nodata=view.findViewById(R.id.nodata);
+       nodata.setVisibility(View.GONE);
         String vehicleNo= Temp.getVehicleNo();
+
+        final PreLoader preloader = new PreLoader(getActivity());
+        preloader.startLoadingDialog();
 
 
 
@@ -77,7 +85,7 @@ public class AddServiceFragment extends Fragment {
         getServiceRecords.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                preloader.dismissDialog();
+                preloader.dismissDialog();
                 if (snapshot.exists()) {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         Service service=postSnapshot.getValue(Service.class);
@@ -86,6 +94,8 @@ public class AddServiceFragment extends Fragment {
                     ServiceAdapter adapter= new ServiceAdapter(serviceList,fdb);
                     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
                     recyclerView.setAdapter(adapter);
+                }else{
+                    nodata.setVisibility(View.VISIBLE);
                 }
             }
             @Override

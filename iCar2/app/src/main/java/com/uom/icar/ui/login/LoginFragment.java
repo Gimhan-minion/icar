@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.uom.icar.PreLoader;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
 import com.uom.icar.Temp;
@@ -52,9 +53,11 @@ public class LoginFragment extends Fragment {
         txtPw=view.findViewById(R.id.txtLogPw);
         btnLog =view.findViewById(R.id.btnLogin);
 
+        final PreLoader preloader = new PreLoader(getActivity());
         btnLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                preloader.startLoadingDialog();
                 //Validation
                 if (checkValid()){
 
@@ -67,7 +70,7 @@ public class LoginFragment extends Fragment {
                     checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            preloader.dismissDialog();
+                            preloader.dismissDialog();
                             if(snapshot.exists()){
                                 String passwordFromDB =snapshot.child(enteredNIC).child("password").getValue(String.class);
 //                                String userTypeFromDB =snapshot.child(enteredNIC).child("type").getValue(String.class);
@@ -108,6 +111,8 @@ public class LoginFragment extends Fragment {
 
                         }
                     });
+                }else{
+                    preloader.dismissDialog();
                 }
             }
         });
