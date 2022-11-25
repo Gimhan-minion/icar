@@ -150,7 +150,7 @@ public class Quiz_Fragment extends Fragment {
     }
 
     private void updateQuestion(){
-        if(mQuestionNumber<4){
+        if(mQuestionNumber<15){
             mQuestionView.setText(mQuestionLibrary.getQuestion(mQuestionNumber));
             mButtonChoice1.setText(mQuestionLibrary.getChoice1(mQuestionNumber));
             mButtonChoice2.setText(mQuestionLibrary.getChoice2(mQuestionNumber));
