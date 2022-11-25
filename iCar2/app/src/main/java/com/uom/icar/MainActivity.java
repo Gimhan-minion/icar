@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
         status = preference.GetBoolean(getApplicationContext(),SharedPreference.LOGIN_STATUS);
         NIC=preference.GetString(getApplicationContext(),SharedPreference.USER_NIC);
 
-        NIC=preference.GetString(getApplicationContext(),SharedPreference.USER_NIC);
-
 
         Temp.setNIC(NIC);
 

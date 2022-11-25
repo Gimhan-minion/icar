@@ -23,9 +23,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.uom.icar.PreLoader;
 import com.uom.icar.R;
 import com.uom.icar.SharedPreference;
+import com.uom.icar.Temp;
 import com.uom.icar.databinding.FragmentHomeBinding;
 import com.uom.icar.model.Vehicle;
 import com.uom.icar.ui.manageVehicle.AddVehicleFragment;
+import com.uom.icar.ui.profile.ProfileFragment;
 import com.uom.icar.ui.register.RegisterFragment;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
     String nic="";
-    CardView add;
+    CardView add,profile;
     TextView nodata;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,6 +55,7 @@ public class HomeFragment extends Fragment {
         nic=preference.GetString(getContext(),SharedPreference.USER_NIC);
 
         add=root.findViewById(R.id.btnAddVehicle);
+        profile=root.findViewById(R.id.homeMyProfile);
 
         nodata=root.findViewById(R.id.nodata);
         nodata.setVisibility(View.GONE);
@@ -94,6 +97,18 @@ public class HomeFragment extends Fragment {
                 trans.replace(R.id.nav_host_fragment_content_main, fragment);
                 trans.addToBackStack(null);
                 trans.commit();
+            }
+        });
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction trans =getActivity().getSupportFragmentManager().beginTransaction();
+                ProfileFragment fragment = new ProfileFragment();
+                trans.replace(R.id.nav_host_fragment_content_main, fragment);
+                trans.addToBackStack(null);
+                trans.commit();
+
             }
         });
 

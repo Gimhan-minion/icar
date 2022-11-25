@@ -6,32 +6,32 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="Home" />
 
         <item
             android:id="@+id/nav_login"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_login"
             android:title="Login" />
 
 
         <item
             android:id="@+id/nav_register"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_reg"
             android:title="register" />
 
 
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_logout"
             android:title="logout" />
         <item
             android:id="@+id/nav_exit"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_exit"
             android:title="exit" />
         <item
             android:id="@+id/nav_quiz"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_quiz"
             android:title="Quiz" />
     </group>
 </menu>
