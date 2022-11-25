@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -35,6 +36,7 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
     String nic="";
     CardView add;
+    TextView nodata;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +49,9 @@ public class HomeFragment extends Fragment {
         nic=preference.GetString(getContext(),SharedPreference.USER_NIC);
 
         add=root.findViewById(R.id.btnAddVehicle);
+
+        nodata=root.findViewById(R.id.nodata);
+        nodata.setVisibility(View.GONE);
 
 
 
@@ -68,6 +73,8 @@ public class HomeFragment extends Fragment {
                     VehicleAdapter adapter= new VehicleAdapter(vehicleList,fdb);
                     recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
                     recyclerView.setAdapter(adapter);
+                }else{
+                nodata.setVisibility(View.VISIBLE);
                 }
             }
             @Override

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -47,6 +48,7 @@ public class AddServiceFragment extends Fragment {
     CardView create;
     EditText title,des,date,mileage;
     String nic="";
+    TextView nodata;
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
 
     public static AddServiceFragment newInstance() {
@@ -65,6 +67,8 @@ public class AddServiceFragment extends Fragment {
        des=view.findViewById(R.id.addServiceDescription);
        date=view.findViewById(R.id.addServiceDate);
        mileage=view.findViewById(R.id.addServiceMileage);
+       nodata=view.findViewById(R.id.nodata);
+       nodata.setVisibility(View.GONE);
         String vehicleNo= Temp.getVehicleNo();
 
 
@@ -86,6 +90,8 @@ public class AddServiceFragment extends Fragment {
                     ServiceAdapter adapter= new ServiceAdapter(serviceList,fdb);
                     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
                     recyclerView.setAdapter(adapter);
+                }else{
+                    nodata.setVisibility(View.VISIBLE);
                 }
             }
             @Override

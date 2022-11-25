@@ -192,6 +192,16 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/nodata"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:layout_marginBottom="100dp"
+                        android:text="No Past Fuel Records"
+                        android:textAlignment="center"
+                        android:textColor="@color/bg" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -202,7 +212,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="25dp"
-                            android:layout_marginBottom="10dp">
+                            android:layout_marginBottom="40dp">
 
                         </androidx.recyclerview.widget.RecyclerView>
 
