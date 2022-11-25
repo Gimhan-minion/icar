@@ -23,6 +23,7 @@ import com.uom.icar.SharedPreference;
 import com.uom.icar.databinding.ActivityMainBinding;
 import com.uom.icar.ui.home.HomeFragment;
 import com.uom.icar.ui.login.LoginFragment;
+import com.uom.icar.ui.quiz.Quiz_Fragment;
 import com.uom.icar.ui.register.RegisterFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -143,6 +144,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(menuID ==R.id.nav_home){
                     HomeFragment fragment =new HomeFragment();
+                    trans.replace(R.id.nav_host_fragment_content_main,fragment);
+                }
+                else if(menuID ==R.id.nav_quiz){
+                    Quiz_Fragment fragment =new Quiz_Fragment();
                     trans.replace(R.id.nav_host_fragment_content_main,fragment);
                 }
 
