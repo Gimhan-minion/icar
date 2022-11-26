@@ -67,6 +67,19 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHold
         holder.vehicleNo.setText(vehicle.getVehicleNo());
         holder.fuel.setText(vehicle.getCurrentFuelAmount()+"L");
 
+        String vehicleType=vehicle.getVehicleType();
+
+        if(vehicleType.equals("Bike")){
+            holder.imgVehicle.setImageResource(R.drawable.ic_bike);
+        }
+        else if(vehicleType.equals("Car")){
+            holder.imgVehicle.setImageResource(R.drawable.ic_car);
+
+        }else if(vehicleType.equals("Van")){
+            holder.imgVehicle.setImageResource(R.drawable.ic_van);
+        }
+
+
 
 
 

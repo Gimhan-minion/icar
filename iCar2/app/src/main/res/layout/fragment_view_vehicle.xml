@@ -99,9 +99,9 @@
 
                                 <ImageView
                                     android:id="@+id/imageView55"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:background="@drawable/create" />
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/ic_fuel" />
 
                                 <TextView
                                     android:id="@+id/textView105"
@@ -140,9 +140,9 @@
 
                                 <ImageView
                                     android:id="@+id/imageView545"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:background="@drawable/create" />
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/ic_service" />
 
                                 <TextView
                                     android:id="@+id/textView1045"
@@ -169,6 +169,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
+                        android:layout_marginBottom="30dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?attr/selectableItemBackground"
@@ -380,9 +381,10 @@
 
                                 <ImageView
                                     android:id="@+id/imageView"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:background="@drawable/create" />
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginStart="10dp"
+                                    android:background="@drawable/ic_vehicle" />
 
                                 <TextView
                                     android:id="@+id/textView1"

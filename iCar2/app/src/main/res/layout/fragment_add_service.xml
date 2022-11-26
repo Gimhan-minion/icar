@@ -171,9 +171,9 @@
 
                                 <ImageView
                                     android:id="@+id/imageView55"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:background="@drawable/create" />
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/add" />
 
                                 <TextView
                                     android:id="@+id/textView105"
