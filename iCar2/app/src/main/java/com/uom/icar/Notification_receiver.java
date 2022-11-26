@@ -32,7 +32,7 @@ public class Notification_receiver extends BroadcastReceiver {
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,"notify")
 
                 .setSmallIcon(R.drawable.icon)
-                .setContentTitle("iCar - Tips")
+                .setContentTitle("iCar - Tip!")
                 .setContentText(msg)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
