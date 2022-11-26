@@ -1,5 +1,6 @@
 package com.uom.icar;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -34,6 +36,8 @@ import com.uom.icar.ui.login.LoginFragment;
 import com.uom.icar.ui.quiz.Quiz_Fragment;
 import com.uom.icar.ui.register.RegisterFragment;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        createNotificationChannel();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -186,48 +191,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //tip of the day
-        // Configure the channel
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel("myChannelId", "My Channel", importance);
-        channel.setDescription("Reminders");
-        // Register the channel with the notifications manager
-        NotificationManager mNotificationManager =
-                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.createNotificationChannel(channel);
+//        //tip of the day
+        Intent intent = new Intent(MainActivity.this,Notification_receiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,0,intent,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager=(AlarmManager) getSystemService(ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.HOUR_OF_DAY,8);
+        calendar.set(Calendar.MINUTE,00);
+        calendar.set(Calendar.SECOND,00);
 
 
-        NotificationCompat.Builder mBuilder;
+//        long timeAtButtonClick =System.currentTimeMillis();
+//        long tenSecondMillis =1000*5;
+//        alarmManager.set(AlarmManager.RTC_WAKEUP,timeAtButtonClick+tenSecondMillis,pendingIntent);
 
-        //get date
-        date=String.valueOf(java.time.LocalDate.now());
-//        date="2022-11-10";
-
-        String savedDate=preference.GetString(getApplicationContext(),SharedPreference.DATE);
-
-        String title ="Tip of The Day";
-        String msg="Drive safe!";
-
-        if(savedDate.equals(date)){
-
-        }else{
-            if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
-                mBuilder =new NotificationCompat.Builder(getApplicationContext(), "myChannelId")
-                        .setSmallIcon(R.drawable.icon)
-                        .setContentTitle(title)
-                        .setContentText(msg);
-            }else{
-                mBuilder = new NotificationCompat.Builder(getApplicationContext())
-                        .setSmallIcon(R.drawable.icon)
-                        .setContentTitle(title)
-                        .setContentText(msg);
-            }
-            NotificationManager nm =
-                    (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            // mId allows you to update the notification later on.
-            nm.notify(1, mBuilder.build());
-            preference.SaveString(getApplicationContext(),date,SharedPreference.DATE);
-        }
+        alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
     }
 
     @Override
@@ -242,6 +222,20 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void createNotificationChannel(){
+
+        CharSequence name ="ReminderChannel";
+        String description="channel for reminder";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel("notify",name,importance);
+        channel.setDescription(description);
+
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
+
     }
 
 
