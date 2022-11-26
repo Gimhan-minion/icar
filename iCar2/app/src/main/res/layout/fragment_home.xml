@@ -125,6 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
 
+                android:layout_marginTop="20dp"
                 android:layout_weight="60"
                 android:src="@drawable/top_bg"
                 app:srcCompat="@drawable/top_bg">
@@ -166,7 +167,7 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/btnAddVehicle"
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|center_horizontal"
                             android:layout_marginTop="10dp"
@@ -179,7 +180,7 @@
                             app:cardElevation=".1dp">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:gravity="center"
@@ -187,10 +188,12 @@
 
                                 <ImageView
                                     android:id="@+id/imageView55"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginStart="55dp"
-                                    android:background="@drawable/create" />
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginStart="73dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/add" />
 
                                 <TextView
                                     android:id="@+id/textView105"
@@ -250,7 +253,7 @@
                             android:id="@+id/textView3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="&quot;Happiness.... is a freshly cleaned house.&quot;"
+                            android:text="&quot;Sharing Smile through Car Caring...&quot;"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="24sp"
@@ -259,7 +262,8 @@
                         <ImageView
                             android:id="@+id/imageView3"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/home_end_img" />
                     </LinearLayout>
 
                 </LinearLayout>
